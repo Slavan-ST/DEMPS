@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>DEMPS</Title>
+    <Version>1.0.3</Version>
+    <Authors>ME</Authors>
+    <Description>TEST</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.5" />
+    <PackageReference Include="ReactiveUI" Version="19.5.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Modesl\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+</Project>
