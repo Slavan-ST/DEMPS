@@ -1,4 +1,6 @@
-﻿namespace Test.ViewModels;
+﻿using ReactiveUI;
+
+namespace Test.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

@@ -1,15 +1,15 @@
 ﻿using Avalonia.Media.Imaging;
-using DEMPS.Services.MessageService;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Test.ViewModels;
 
-namespace DEMPS.ViewModels
+namespace Test.DEMPS.Services.Message
 {
     public class MessageViewModel:ViewModelBase
     {
@@ -18,7 +18,7 @@ namespace DEMPS.ViewModels
             Text = text;
             InitializeCommand();
         }
-        public MessageViewModel(string text,string title)
+        public MessageViewModel(string text, string title)
         {
             Text = text;
             Title = title;

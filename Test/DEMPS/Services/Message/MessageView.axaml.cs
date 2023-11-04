@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace DEMPS.Views
+namespace Test.DEMPS.Services.Message
 {
     public partial class MessageView : UserControl
     {

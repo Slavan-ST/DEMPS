@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DEMPS.Services.MessageService
+namespace Test.DEMPS.Services.Message
 {
     public struct DialogResult
     {

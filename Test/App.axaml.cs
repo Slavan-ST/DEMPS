@@ -1,7 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-
+using Test.DEMPS.Pages.Views;
+using Test.DEMPS.Services.Navigation;
 using Test.ViewModels;
 using Test.Views;
 
@@ -14,25 +15,23 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this); // сюда что-нибудь придумать
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    public override void OnFrameworkInitializationCompleted()//и сюда
     {
-        var dataContext = new MainViewModel();
+        Navigation.Pages.Add("main", new MainViewModel());
+
+        var window = new DEMPS.Pages.Views.MainWindow();
+
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = dataContext
-            };
+            desktop.MainWindow = window;
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
-            singleViewPlatform.MainView = new MainView
-            {
-                DataContext = dataContext
-            };
+            singleViewPlatform.MainView = new DEMPS.Pages.Views.MainNavigationPageView();
         }
 
+        Navigation.Go("main");
         base.OnFrameworkInitializationCompleted();
     }
 }

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace DEMPS.Views
+namespace Test.DEMPS.Pages.Views
 {
     public partial class MainWindow : Window
     {
