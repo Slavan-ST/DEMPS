@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="DEMPS.Services.Message.MessageView">
+
+
+	<StackPanel VerticalAlignment ="Center"
+				HorizontalAlignment ="Center">
+		<StackPanel Orientation="Horizontal"
+					VerticalAlignment="Top">
+			<Image Source="{Binding Image}"/>
+			<TextBlock Text="{Binding Title}"/>
+		</StackPanel>
+
+
+		<StackPanel VerticalAlignment ="Center"
+					HorizontalAlignment ="Center">
+			<TextBlock Text="{Binding Text}"/>
+
+			<StackPanel Orientation="Horizontal">
+				<Button Command ="{Binding Ok}" Content="OK"/>
+				<Button Command ="{Binding Cancel}" Content="Cancel" IsVisible="{Binding IsCancel}"/>
+			</StackPanel>
+
+		</StackPanel>
+	</StackPanel>
+	
+</UserControl>

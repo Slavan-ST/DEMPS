@@ -21,8 +21,4 @@
     <PackageReference Include="Avalonia.Android" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Test\Test.csproj" />
-  </ItemGroup>
 </Project>
