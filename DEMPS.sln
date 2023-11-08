@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEMPS", "DEMPS\DEMPS.csproj", "{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{414DE289-84E5-4776-A9B2-EE6D18694CCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication1.Desktop", "AvaloniaApplication1.Desktop\AvaloniaApplication1.Desktop.csproj", "{42815B18-D66F-4BF6-A72B-343BB754B55E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414DE289-84E5-4776-A9B2-EE6D18694CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414DE289-84E5-4776-A9B2-EE6D18694CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414DE289-84E5-4776-A9B2-EE6D18694CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414DE289-84E5-4776-A9B2-EE6D18694CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42815B18-D66F-4BF6-A72B-343BB754B55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42815B18-D66F-4BF6-A72B-343BB754B55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42815B18-D66F-4BF6-A72B-343BB754B55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42815B18-D66F-4BF6-A72B-343BB754B55E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
