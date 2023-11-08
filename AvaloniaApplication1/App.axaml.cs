@@ -20,7 +20,7 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         Test.OnFrameworkInitializationCompleted(ApplicationLifetime, new MainViewModel());
-        Message.Show("message");
+        Message.Show(text: "Hello");
     }
 }
 public class Test

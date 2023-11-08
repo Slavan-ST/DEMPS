@@ -6,6 +6,7 @@
 			 xmlns:vm ="clr-namespace:DEMPS.Services.Message"
              x:Class="DEMPS.Services.Message.MessageView"
 			 
+			 Background="LightGray"
 			 VerticalAlignment="Center"
 			 HorizontalAlignment="Center">
 
