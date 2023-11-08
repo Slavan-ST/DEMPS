@@ -19,6 +19,11 @@ namespace DEMPS.Services.Message
             Text = text;
             InitializeCommand();
         }
+        public MessageViewModel()
+        {
+            Text = "Message";
+            InitializeCommand();
+        }
         public MessageViewModel(string text, string title)
         {
             Text = text;
@@ -46,10 +51,12 @@ namespace DEMPS.Services.Message
             Ok = ReactiveCommand.Create(() =>
             {
                 Message.DialogResult = DialogResult.OK;
+                Navigation.Navigation.NavigationView!.Message = null;
             });
             Cancel = ReactiveCommand.Create(() =>
             {
                 Message.DialogResult = DialogResult.Cancel;
+                Navigation.Navigation.NavigationView!.Message = null;
             });
         }
 

@@ -1,4 +1,6 @@
-﻿namespace AvaloniaApplication1.ViewModels;
+﻿using DEMPS.Pages.ViewModels;
+
+namespace AvaloniaApplication1.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

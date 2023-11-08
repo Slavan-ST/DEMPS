@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DEMPS.Pages.ViewModels;
+using ReactiveUI;
 
 namespace DEMPS.Services.Navigation
 {
     public static class Navigation
     {
-        public static Dictionary<string, object> Pages = new Dictionary<string, object>();
+        public static Dictionary<string, ReactiveObject> Pages { get; set; } = new Dictionary<string, ReactiveObject>();
         public static MainNavigationPageViewModel? NavigationView { get; set; }
         public static void Go(string page)
         {
-            var pageView = Pages.Where(p => p.Key == page).First().Value;
+            var pageView = Pages[page];
             if (pageView == null)
             {
                 NavigationView!.Page = (Pages.First().Value as ViewModelBase)!;
             }
             else
             {
-                NavigationView!.Page = (pageView as ViewModelBase)!;
+                NavigationView!.Page = (ViewModelBase)pageView;
             }
         }
     }

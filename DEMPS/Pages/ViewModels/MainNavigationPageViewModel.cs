@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DEMPS.Services.Navigation;
+using Avalonia.Controls;
 
 namespace DEMPS.Pages.ViewModels
 {
@@ -13,11 +14,11 @@ namespace DEMPS.Pages.ViewModels
     {
         public MainNavigationPageViewModel() 
         {
-
+            Page = (Navigation.Pages.First().Value as ViewModelBase)!;
         }
         [Reactive]
         public ViewModelBase Page { get; set; }
         [Reactive]
-        public ViewModelBase? Message { get; set; }
+        public UserControl? Message { get; set; }
     }
 }
