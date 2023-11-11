@@ -1,11 +1,11 @@
 ﻿using Avalonia.Controls.Templates;
 using Avalonia.Controls;
-using DEMPS.Pages.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DEMPS.ViewModels;
 
 namespace DEMPS
 {

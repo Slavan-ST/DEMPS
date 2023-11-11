@@ -1,5 +1,5 @@
 ﻿using Avalonia.Controls.ApplicationLifetimes;
-using DEMPS.Services.Navigation;
+using DEMPS.Services;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -23,12 +23,12 @@ namespace DEMPS
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                var window = new Pages.Views.MainWindow();
+                var window = new Views.MainWindow();
                 desktop.MainWindow = window;
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
-                singleViewPlatform.MainView = new Pages.Views.MainNavigationPageView();
+                singleViewPlatform.MainView = new Views.MainNavigationPageView();
             }
 
             Navigation.Go("first");
