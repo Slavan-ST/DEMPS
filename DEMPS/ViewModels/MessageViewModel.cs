@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DEMPS.Services;
+using DEMPS.Models;
 
 namespace DEMPS.ViewModels
 {
-    public class MessageViewModel : ViewModelBase
+    public class MessageViewModel : ReactiveObject
     {
         public MessageViewModel(string text)
         {
@@ -49,12 +50,12 @@ namespace DEMPS.ViewModels
         {
             Ok = ReactiveCommand.Create(() =>
             {
-                Message.DialogResult = DialogResult.OK;
+                MessageBox.DialogResult = DialogResult.OK;
                 Navigation.NavigationView!.Message = null;
             });
             Cancel = ReactiveCommand.Create(() =>
             {
-                Message.DialogResult = DialogResult.Cancel;
+                MessageBox.DialogResult = DialogResult.Cancel;
                 Navigation.NavigationView!.Message = null;
             });
         }

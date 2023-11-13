@@ -3,6 +3,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="DEMPS.Views.MessageView">
-  Welcome to Avalonia!
+			 xmlns:vm ="clr-namespace:DEMPS.ViewModels"
+             x:Class="DEMPS.Views.MessageView"
+			 
+			 Background="LightGray"
+			 VerticalAlignment="Center"
+			 HorizontalAlignment="Center">
+
+
+	<StackPanel VerticalAlignment ="Center"
+				HorizontalAlignment ="Center"
+				>
+		<StackPanel Margin="30">
+			<StackPanel Orientation="Horizontal"
+						VerticalAlignment="Top">
+				<Image Source="{Binding Image}"/>
+				<TextBlock Text="{Binding Title}"/>
+			</StackPanel>
+
+
+			<StackPanel VerticalAlignment ="Center"
+						HorizontalAlignment ="Center">
+				<TextBlock Text="{Binding Text}"/>
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					<Button Command ="{Binding Ok}" Content="OK"/>
+					<Button Command ="{Binding Cancel}" Content="Cancel" IsVisible="{Binding IsCancel}"/>
+				</StackPanel>
+
+			</StackPanel>
+		</StackPanel>
+	</StackPanel>
+
+
 </UserControl>

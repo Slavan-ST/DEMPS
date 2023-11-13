@@ -5,6 +5,12 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEMPS", "DEMPS\DEMPS.csproj", "{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplicationTest", "AvaloniaApplicationTest\AvaloniaApplicationTest.csproj", "{F6FF5712-F345-4F1C-991C-E61A37AC9490}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplicationTest.Android", "AvaloniaApplicationTest.Android\AvaloniaApplicationTest.Android.csproj", "{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplicationTest.Desktop", "AvaloniaApplicationTest.Desktop\AvaloniaApplicationTest.Desktop.csproj", "{063036C8-585A-4CA8-AB54-A4F78C065724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,20 @@ Global
 		{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D27E6ED2-7CFE-4222-B3BC-28D4EDA94941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6FF5712-F345-4F1C-991C-E61A37AC9490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6FF5712-F345-4F1C-991C-E61A37AC9490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6FF5712-F345-4F1C-991C-E61A37AC9490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6FF5712-F345-4F1C-991C-E61A37AC9490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2037F6A-88A0-49A2-B1E8-CE93A20B3564}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{063036C8-585A-4CA8-AB54-A4F78C065724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{063036C8-585A-4CA8-AB54-A4F78C065724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{063036C8-585A-4CA8-AB54-A4F78C065724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{063036C8-585A-4CA8-AB54-A4F78C065724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

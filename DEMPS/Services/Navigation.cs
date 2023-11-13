@@ -18,11 +18,11 @@ namespace DEMPS.Services
             var pageView = Pages[page];
             if (pageView == null)
             {
-                NavigationView!.Page = (Pages.First().Value as ViewModelBase)!;
+                NavigationView!.Page = Pages.First().Value!;
             }
             else
             {
-                NavigationView!.Page = (ViewModelBase)pageView;
+                NavigationView!.Page = pageView;
             }
         }
     }

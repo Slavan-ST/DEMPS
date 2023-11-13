@@ -7,16 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using DEMPS.ViewModels;
 using ReactiveUI;
+using System.Reflection;
 using System.Diagnostics;
 
-namespace DEMPS
+namespace AvaloniaApplicationTest
 {
     public class ViewLocator : IDataTemplate
     {
         public Control? Build(object? data)
         {
             var name = data!.GetType().FullName!.Replace("ViewModel", "View");
-            Debug.WriteLine("assembly: ============= " + data.GetType().Assembly);
+            Debug.WriteLine("assembly: ============= "+data.GetType().Assembly);
             var type = Type.GetType(name);
 
             if (type != null)

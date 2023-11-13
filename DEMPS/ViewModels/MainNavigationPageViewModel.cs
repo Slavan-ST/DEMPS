@@ -10,14 +10,14 @@ using Avalonia.Controls;
 
 namespace DEMPS.ViewModels
 {
-    public class MainNavigationPageViewModel : ViewModelBase
+    public class MainNavigationPageViewModel : ReactiveObject
     {
         public MainNavigationPageViewModel()
         {
-            Page = (Navigation.Pages.First().Value as ViewModelBase)!;
+            Page = Navigation.Pages.First().Value!;
         }
         [Reactive]
-        public ViewModelBase Page { get; set; }
+        public ReactiveObject Page { get; set; }
         [Reactive]
         public UserControl? Message { get; set; }
     }
