@@ -10,11 +10,12 @@ public class MainViewModel : ViewModelBase
     public MainViewModel()
     {
         Click = ReactiveCommand.Create(() =>
-        {
-            if (new MessageBox("text").Show() == DEMPS.Models.DialogResult.OK)
-            {
-                new MessageBox("t2").Show();
-            }
+        {/*
+            var box = MessageBoxManager
+                .GetMessageBoxStandard("Caption", "Are you sure you would like to delete appender_replace_page_1?",
+                    ButtonEnum.YesNo);
+
+            var result = await box.ShowAsPopupAsync(this);*/
         });
     }
     public ICommand Click { get; set; }
