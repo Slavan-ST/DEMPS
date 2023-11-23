@@ -17,8 +17,8 @@ namespace DEMPS.ViewModels
             Page = Navigation.Pages.First().Value!;
         }
         [Reactive]
-        public ReactiveObject Page { get; set; }
+        public ContentControl Page { get; set; }
         [Reactive]
-        public UserControl? Message { get; set; }
+        public ContentControl? Message { get; set; }
     }
 }

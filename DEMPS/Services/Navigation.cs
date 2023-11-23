@@ -11,7 +11,7 @@ namespace DEMPS.Services
 {
     public static class Navigation
     {
-        public static Dictionary<string, ReactiveObject> Pages { get; set; } = new Dictionary<string, ReactiveObject>();
+        public static Dictionary<string, ContentControl> Pages { get; set; } = new Dictionary<string, ContentControl>();
         public static MainNavigationPageViewModel? NavigationView { get; set; }
         public static void Go(string page)
         {

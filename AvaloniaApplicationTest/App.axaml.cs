@@ -16,7 +16,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        DEMPS.AppConfig.InitializationCompleted(ApplicationLifetime, new MainViewModel());
+        DEMPS.AppConfig.InitializationCompleted(ApplicationLifetime, new MainView());
         base.OnFrameworkInitializationCompleted();
     }
 }

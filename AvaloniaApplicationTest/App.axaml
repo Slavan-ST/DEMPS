@@ -9,7 +9,4 @@
         <FluentTheme />
     </Application.Styles>
 
-	<Application.DataTemplates>
-		<local:ViewLocator/>
-	</Application.DataTemplates>
 </Application>

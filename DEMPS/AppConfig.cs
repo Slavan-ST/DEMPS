@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls.ApplicationLifetimes;
+﻿using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using DEMPS.Services;
 using ReactiveUI;
 using System;
@@ -17,7 +18,7 @@ namespace DEMPS
         /// <param name="ApplicationLifetime"></param>
         /// <param name="firstView">Первая страница в приложении, дальнейшее обращение к данной странице возможно: Navigation.Pages["first"]
         /// все страницы необходимо добавлять в Navigation.Pages</param>
-        public static void InitializationCompleted(IApplicationLifetime? ApplicationLifetime, ReactiveObject firstView)
+        public static void InitializationCompleted(IApplicationLifetime? ApplicationLifetime, ContentControl firstView)
         {
             Navigation.Pages.Add("first", firstView);
 
