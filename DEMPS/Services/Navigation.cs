@@ -46,7 +46,6 @@ namespace DEMPS.Services
         {
             Pages.Add(namePageForNavigate, page);
         }
-
         /// <summary>
         /// переход к вьюшке с установлением нового DataContext
         /// </summary>
