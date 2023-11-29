@@ -14,7 +14,7 @@ namespace DEMPS.ViewModels
     {
         public MainNavigationPageViewModel()
         {
-            Page = Navigation.Pages.First().Value!;
+            Page = Navigation.GetStartPage()!;
         }
         [Reactive]
         public ContentControl Page { get; set; }
