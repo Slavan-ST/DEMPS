@@ -20,7 +20,7 @@ namespace DEMPS
         /// все страницы необходимо добавлять в Navigation.Pages</param>
         public static void StartApp(IApplicationLifetime? ApplicationLifetime, ContentControl firstView)
         {
-            Navigation.Pages.Add("first", firstView);
+            Navigation.Add("first", firstView);
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
