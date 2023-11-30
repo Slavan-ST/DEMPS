@@ -6,9 +6,9 @@
 	  
     <Nullable>enable</Nullable>
     <Title>DEMPS</Title>
-    <Version>1.0.9</Version>
-    <Authors>ME</Authors>
-    <Description>TEST</Description>
+    <Version>1.0.10</Version>
+    <Authors>SlavanST</Authors>
+    <Description>Небольшая библиотека с удобной навигацией между страницами</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +25,12 @@
     <Compile Update="Views\MainWindow.axaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Avalonia" />
+    <Using Include="ReactiveUI" />
+    <Using Include="ReactiveUI.Fody" />
   </ItemGroup>
 
   <ItemGroup>
