@@ -18,47 +18,68 @@ namespace DEMPS.Models
 
         public Captcha(int length)
         {
-            int abcLength = ABCEnglishAndNumbersForCaptcha.Length;
+            int abcLength = englishABCAndNumbersForCaptcha.Length;
             for (int i = 0; i < length; i++)
             {
-                _text += ABCEnglishAndNumbersForCaptcha[rnd.Next(0, abcLength)];
+                _text += englishABCAndNumbersForCaptcha[rnd.Next(0, abcLength)];
             }
+            Image = CreateCaptcha(_text);
         }
-        private IEnumerable<TextBlock> CreateCaptcha(string text)
+        private Canvas CreateCaptcha(string text)//тут будет возврат Canvas
         {
             List<TextBlock> textForCaptcha = new List<TextBlock>();
 
 
             foreach(var letter in  text)
             {
-                TextBlock oneLetterFromText = new TextBlock();
+                TextBlock letterTextBlock = new TextBlock();
                 
-                oneLetterFromText.Text = letter.ToString();
+                letterTextBlock.Text = letter.ToString();
+                letterTextBlock.Margin = RandomTextMargin(3,8);//min ,max
+                letterTextBlock.FontSize = RandowFontSize(3,15);//min,max
                 //oneLetterFromText.Foreground = ;
                 //oneLetterFromText.FontSize = 
-                //oneLetterFromText.Margin = new Thickness();
+
+                textForCaptcha.Add(letterTextBlock);
+            }
+            Canvas canvasForCaptcha = new Canvas();
+            foreach(var item in textForCaptcha)
+            {
+                item.Margin = new Thickness(
+                    item.Margin.Left, 
+                    item.Margin.Top,
+                    item.Margin.Right + 10, 
+                    item.Margin.Bottom);
+
+                canvasForCaptcha.Children.Add(item);
             }
 
-            return textForCaptcha;
+            return canvasForCaptcha;
         }
 
         private Random rnd = new Random();
-        private string ABCEnglishAndNumbersForCaptcha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        /// <summary>
+        /// позже надо бы разделить на части: алфавит/числа
+        /// </summary>
+        private const string englishABCAndNumbersForCaptcha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private string _text = "";
-        private Bitmap _image;
         public string Text { get => _text; }
-        public Bitmap Image { get => _image; }
+        public Canvas Image { get; }//ну да
 
         /// <summary>
-        /// отступ между буквами, для разнообразия
+        /// отступ между сторонами, вычисляется к каждой стороне отдельно, от минимального до максимального
         /// </summary>
+        /// <param name="marginMin">минимальный отступ</param>
+        /// <param name="marginMax">максимальный отступ</param>
         /// <returns></returns>
-        private Thickness RandomTextMargin()
+        private Thickness RandomTextMargin(double marginMin, double marginMax)
         {
-            return new Thickness()
-            {
-
-            };
+            return new Thickness(
+                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax))), //left
+                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax))), //top
+                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax))), //right
+                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax)))  //bottom
+                );
         }
         /// <summary>
         /// размер текста

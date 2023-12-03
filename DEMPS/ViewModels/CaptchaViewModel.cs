@@ -1,5 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +12,8 @@ namespace DEMPS.ViewModels
         {
 
         }
-
-        public Bitmap? Image { get; set; } // изображение капчи
+        
+       // public Bitmap? Image { get; set; } // изображение капчи
         public string Text { get; set; } = string.Empty; //Текст капчи
         public string InputUserText { get; set; } = string.Empty; //Текст капчи, введенный пользователем
         public bool IsVerified { get; set; } = false; // совпадает-ли текст введенный пользователем с текстом капчи

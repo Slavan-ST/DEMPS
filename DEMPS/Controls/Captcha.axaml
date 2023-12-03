@@ -16,7 +16,7 @@
 		</Grid.RowDefinitions>
 		
 		
-		<Image Source="{Binding Image}"/>
+		<StackPanel/>
 		<TextBox Grid.Row="1" Text="{Binding InputUserText}"/>
 	</Grid>
 </UserControl>

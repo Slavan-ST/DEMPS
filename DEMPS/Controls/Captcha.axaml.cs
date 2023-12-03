@@ -8,7 +8,6 @@ namespace DEMPS.Controls
     {
         public Captcha()
         {
-            InitializeComponent();
             DataContext = new CaptchaViewModel();
         }
 
