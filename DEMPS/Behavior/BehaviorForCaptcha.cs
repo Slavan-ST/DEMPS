@@ -20,25 +20,9 @@ namespace DEMPS.Behavior
         
         static BehaviorForCaptcha()
         {
-            TheEventProperty.Changed.Subscribe(OnEventChanged);
+
         }
 
-
-        public static RoutedEvent GetTheEvent(Control obj)
-        {
-            return obj.GetValue(TheEventProperty);
-        }
-
-        public static void SetTheEvent(Control obj, RoutedEvent value)
-        {
-            obj.SetValue(TheEventProperty, value);
-        }
-
-        public static readonly AttachedProperty<RoutedEvent> TheEventProperty =
-            AvaloniaProperty.RegisterAttached<BehaviorForCaptcha, Control, RoutedEvent>
-            (
-                "TheEvent"
-            );
 
 
         public static object GetTargetObject(Control obj)
@@ -54,7 +38,7 @@ namespace DEMPS.Behavior
         public static readonly AttachedProperty<object> TargetObjectProperty =
             AvaloniaProperty.RegisterAttached<BehaviorForCaptcha, Control, object>
             (
-                "TargetObject"
+                "IsVerified"
             );
 
 
@@ -75,30 +59,6 @@ namespace DEMPS.Behavior
                 "MethodToCall"
             );
 
-
-
-
-        private static void OnEventChanged(AvaloniaPropertyChangedEventArgs<RoutedEvent> args)
-        {
-            Control el = (Control)args.Sender;
-
-            RoutedEvent? oldRoutedEvent = args.OldValue.Value as RoutedEvent;
-
-            if (oldRoutedEvent != null)
-            {
-                // remove old event handler from the object (if exists)
-                el.RemoveHandler(oldRoutedEvent, (EventHandler<RoutedEventArgs>)HandleRoutedEvent!);
-            }
-
-
-            RoutedEvent newRoutedEvent = args.NewValue.Value as RoutedEvent;
-
-            if (newRoutedEvent != null)
-            {
-                // add new event handler to the object
-                el.AddHandler(newRoutedEvent, (EventHandler<RoutedEventArgs>)HandleRoutedEvent!);
-            }
-        }
 
         // handle the routed event when happens on the object
         // by calling the method of name 'methodName' onf the
