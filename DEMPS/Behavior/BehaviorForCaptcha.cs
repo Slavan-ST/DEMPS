@@ -25,17 +25,17 @@ namespace DEMPS.Behavior
 
 
 
-        public static object GetTargetObject(Control obj)
+        public static object GetIsVerified(Control obj)
         {
-            return obj.GetValue(TargetObjectProperty);
+            return obj.GetValue(IsVerifiedProperty);
         }
 
-        public static void SetTargetObject(Control obj, object value)
+        public static void SetIsVerified(Control obj, object value)
         {
-            obj.SetValue(TargetObjectProperty, value);
+            obj.SetValue(IsVerifiedProperty, value);
         }
 
-        public static readonly AttachedProperty<object> TargetObjectProperty =
+        public static readonly AttachedProperty<object> IsVerifiedProperty =
             AvaloniaProperty.RegisterAttached<BehaviorForCaptcha, Control, object>
             (
                 "IsVerified"
@@ -43,22 +43,7 @@ namespace DEMPS.Behavior
 
 
 
-        public static string GetMethodToCall(Control obj)
-        {
-            return obj.GetValue(MethodToCallProperty);
-        }
-
-        public static void SetMethodToCall(Control obj, string value)
-        {
-            obj.SetValue(MethodToCallProperty, value);
-        }
-
-        public static readonly AttachedProperty<string> MethodToCallProperty =
-            AvaloniaProperty.RegisterAttached<BehaviorForCaptcha, Control, string>
-            (
-                "MethodToCall"
-            );
-
+       
 
         // handle the routed event when happens on the object
         // by calling the method of name 'methodName' onf the
@@ -68,26 +53,8 @@ namespace DEMPS.Behavior
             Control el = (Control)sender;
 
             // if TargetObject is not set, use DataContext as the target object
-            object? targetObject = GetTargetObject(el) ?? el.DataContext;
+            object? targetObject = GetIsVerified(el) ?? el.DataContext;
 
-            string? methodName = GetMethodToCall(el);
-
-            // do not do anything
-            if (targetObject == null || methodName == null)
-            {
-                return;
-            }
-
-            MethodInfo? methodInfo =
-                targetObject.GetType().GetMethod(methodName);
-
-            if (methodInfo == null)
-            {
-                return;
-            }
-
-            // call the method using reflection
-            methodInfo.Invoke(targetObject, null);
         }
     }
 }

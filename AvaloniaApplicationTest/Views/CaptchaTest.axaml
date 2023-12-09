@@ -3,10 +3,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:atprperty="clr-namespace:DEMPS.Behavior;assembly=DEMPS"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"			 
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaApplicationTest.Views.CaptchaTest"
-			 >
-	
+				  
+			 atprperty:BehaviorForCaptcha.IsVerified="{Binding IsVerified}">
+
 	<Grid Margin="20">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
@@ -15,8 +16,8 @@
 			<RowDefinition Height="8*"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		
-		
+
+
 		<Image Source="{Binding Image}"/>
 		<TextBox Grid.Row="1" Text="{Binding Text}"/>
 	</Grid>

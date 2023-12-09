@@ -1,4 +1,6 @@
 using Avalonia.Controls;
+using Avalonia.Media.Imaging;
+using DEMPS.ViewModels;
 
 namespace AvaloniaApplicationTest.Views
 {
@@ -7,6 +9,7 @@ namespace AvaloniaApplicationTest.Views
         public CaptchaTest()
         {
             InitializeComponent();
+            DataContext = new CaptchaViewModel();
         }
     }
 }
