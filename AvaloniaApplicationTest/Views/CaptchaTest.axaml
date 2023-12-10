@@ -18,7 +18,14 @@
 		</Grid.RowDefinitions>
 
 
-		<Image Source="{Binding Image}"/>
+		<Border Grid.Row="0"
+				Width="200"
+				Height="200"
+				BorderBrush="AliceBlue" 
+				BorderThickness="5">
+			<UserControl Content="{Binding Image}"/>
+		</Border>
+		
 		<TextBox Grid.Row="1" Text="{Binding Text}"/>
 	</Grid>
 </UserControl>

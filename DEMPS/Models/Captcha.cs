@@ -1,6 +1,8 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,14 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DEMPS.Models
 {
-    public class Captcha
+    public class Captcha:ReactiveObject
     {
         /*
                 Не забыть запихать всё в Grid, так будет лучше, хотя можно и Canvas....
+                
+                а не, чистый Canvas смотрится плохо
+                лучше его сделать "вспомогательным", расшириф на весь грид, для рисования "помех" и прочего
+                а в столбца грида буквы: 1 столбец = 1 буква
         */
 
         public Captcha(int length)
@@ -24,8 +30,9 @@ namespace DEMPS.Models
                 _text += englishABCAndNumbersForCaptcha[rnd.Next(0, abcLength)];
             }
             Image = CreateCaptcha(_text);
+            CreateInterference(3, 100,100);
         }
-        private Canvas CreateCaptcha(string text)//тут будет возврат Canvas
+        private Grid CreateCaptcha(string text)//тут будет возврат Canvas
         {
             List<TextBlock> textForCaptcha = new List<TextBlock>();
 
@@ -42,29 +49,78 @@ namespace DEMPS.Models
 
                 textForCaptcha.Add(letterTextBlock);
             }
-            Canvas canvasForCaptcha = new Canvas();
-            foreach(var item in textForCaptcha)
-            {
-                item.Margin = new Thickness(
-                    item.Margin.Left, 
-                    item.Margin.Top,
-                    item.Margin.Right + 10, 
-                    item.Margin.Bottom);
+            Grid gridForCaptcha = new Grid();
 
-                canvasForCaptcha.Children.Add(item);
+
+            int numberColumn = 0;
+            foreach (var item in textForCaptcha)
+            {
+                gridForCaptcha.ColumnDefinitions.Add(new ColumnDefinition()); //добавляем новый столбец для буквы
+
+                gridForCaptcha.Children.Add(item);  //добавляем буква в грид
+                Grid.SetColumn(item, numberColumn); //закидываем букву в последний столбец
+
+                numberColumn++;
+            }
+            return gridForCaptcha;
+        }
+
+        private void CreateInterference(int interferencesMultiplier, int width, int height)
+        {
+            Canvas canvas = new Canvas();
+
+            canvas.Width = Image.Width;
+            canvas.Height = Image.Height;
+
+            int imageWidth = width;
+            int imageHeight = height;
+
+            int rand = rnd.Next(5 * interferencesMultiplier, 10 * interferencesMultiplier);
+
+            for (int i = 0; i < 100; i++)
+            {
+                Line line = new Line()
+                {
+                    StartPoint = new Point(
+                        rnd.Next(0, imageWidth),
+                        rnd.Next(0, imageHeight)
+                        ),
+
+                    EndPoint = new Point(
+                        rnd.Next(0, imageWidth),
+                        rnd.Next(0, imageHeight)
+                        ),
+                    StrokeThickness = rnd.Next(2, 5),
+                    Stroke = Brushes.White
+                };
+                canvas.Children.Add(line);
             }
 
-            return canvasForCaptcha;
+            Image.Children.Add(canvas);
+            Grid.SetColumnSpan(canvas, Image.ColumnDefinitions.Count);
         }
+
+
+
+        #region Свойства
+
+        public string Text { get => _text; }
+        public Grid Image { get; }//ну да
+
+        #endregion
+        #region Поля
+
+        private string _text = "";
 
         private Random rnd = new Random();
         /// <summary>
         /// позже надо бы разделить на части: алфавит/числа
         /// </summary>
         private const string englishABCAndNumbersForCaptcha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        private string _text = "";
-        public string Text { get => _text; }
-        public Canvas Image { get; }//ну да
+
+        #endregion
+
+
 
         /// <summary>
         /// отступ между сторонами, вычисляется к каждой стороне отдельно, от минимального до максимального

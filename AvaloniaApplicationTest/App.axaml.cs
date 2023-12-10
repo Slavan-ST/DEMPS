@@ -16,7 +16,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        //DEMPS.AppConfig.StartApp(ApplicationLifetime, new MainView());
-        //base.OnFrameworkInitializationCompleted();
+        DEMPS.AppConfig.StartApp(ApplicationLifetime, new CaptchaTest());
+        base.OnFrameworkInitializationCompleted();
     }
 }
