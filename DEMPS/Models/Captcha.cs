@@ -42,10 +42,13 @@ namespace DEMPS.Models
                 TextBlock letterTextBlock = new TextBlock();
                 
                 letterTextBlock.Text = letter.ToString();
-                letterTextBlock.Margin = RandomTextMargin(3,8);//min ,max
-                letterTextBlock.FontSize = RandowFontSize(3,15);//min,max
-                //oneLetterFromText.Foreground = ;
-                //oneLetterFromText.FontSize = 
+                letterTextBlock.Margin = RandomTextMargin(0,8,0,10);//min ,max
+                letterTextBlock.FontSize = RandomFontSize(15,25);//min,max
+                //letterTextBlock.Foreground = ;
+                //letterTextBlock.FontSize = 
+                letterTextBlock.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                letterTextBlock.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
+
 
                 textForCaptcha.Add(letterTextBlock);
             }
@@ -57,7 +60,7 @@ namespace DEMPS.Models
             {
                 gridForCaptcha.ColumnDefinitions.Add(new ColumnDefinition()); //добавляем новый столбец для буквы
 
-                gridForCaptcha.Children.Add(item);  //добавляем буква в грид
+                gridForCaptcha.Children.Add(item);  //добавляем букву в грид
                 Grid.SetColumn(item, numberColumn); //закидываем букву в последний столбец
 
                 numberColumn++;
@@ -91,7 +94,7 @@ namespace DEMPS.Models
                         rnd.Next(0, imageHeight)
                         ),
                     StrokeThickness = rnd.Next(2, 5),
-                    Stroke = Brushes.White
+                    Stroke = new SolidColorBrush(Color.FromArgb(50, 50, 50, 50))
                 };
                 canvas.Children.Add(line);
             }
@@ -121,20 +124,21 @@ namespace DEMPS.Models
         #endregion
 
 
-
         /// <summary>
-        /// отступ между сторонами, вычисляется к каждой стороне отдельно, от минимального до максимального
+        /// отступ между сторонами, вычисляется к каждой стороне отдельно, от 0 до указанного
         /// </summary>
-        /// <param name="marginMin">минимальный отступ</param>
-        /// <param name="marginMax">максимальный отступ</param>
+        /// <param name="marginLeft"></param>
+        /// <param name="marginTop"></param>
+        /// <param name="marginRight"></param>
+        /// <param name="marginBotton"></param>
         /// <returns></returns>
-        private Thickness RandomTextMargin(double marginMin, double marginMax)
+        private Thickness RandomTextMargin(double marginLeft, double marginTop, double marginRight, double marginBotton)
         {
             return new Thickness(
-                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax))), //left
-                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax))), //top
-                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax))), //right
-                rnd.Next(Convert.ToInt32(Math.Round(marginMin)), Convert.ToInt32(Math.Round(marginMax)))  //bottom
+                rnd.Next(0, Convert.ToInt32(Math.Round(marginLeft))), //left
+                rnd.Next(0, Convert.ToInt32(Math.Round(marginTop))), //top
+                rnd.Next(0, Convert.ToInt32(Math.Round(marginRight))), //right
+                rnd.Next(0, Convert.ToInt32(Math.Round(marginBotton)))  //bottom
                 );
         }
         /// <summary>
@@ -143,7 +147,7 @@ namespace DEMPS.Models
         /// <param name="minFontSize">минимальный размер текста</param>
         /// <param name="maxFontSize">максимальный размер текста</param>
         /// <returns></returns>
-        private double RandowFontSize(double minFontSize = 5, double maxFontSize = 15)
+        private double RandomFontSize(double minFontSize = 10, double maxFontSize = 25)
         {
             return rnd.Next(
                 Convert.ToInt32(Math.Round(minFontSize)),

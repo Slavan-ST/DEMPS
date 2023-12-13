@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using DEMPS.Models;
+using MsBox.Avalonia;
 using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,24 @@ namespace DEMPS.ViewModels
     {
         public CaptchaViewModel()
         {
-            int lengthCaptcha = 10;
-            Image = new Captcha(lengthCaptcha).Image;
+            int lengthCaptcha = 6;
+            Captcha captcha = new Captcha(lengthCaptcha);
+
+            Image = captcha.Image;
+            Text = captcha.Text;
+
+            this.WhenAnyValue(x => x.InputUserText).Subscribe(x =>
+            {
+                if (InputUserText.ToLower() == Text.ToLower())
+                {
+                    IsVerified = true;
+                    MessageBoxManager.GetMessageBoxStandard("message", "Is verified !!").ShowAsync();
+                }
+                else
+                {
+                    IsVerified = false;
+                }
+            });
         }
 
         // public Bitmap? Image { get; set; } // изображение капчи
