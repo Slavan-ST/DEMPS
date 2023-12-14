@@ -14,15 +14,8 @@ namespace DEMPS.Models
 {
     public class Captcha:ReactiveObject
     {
-        /*
-                Не забыть запихать всё в Grid, так будет лучше, хотя можно и Canvas....
-                
-                а не, чистый Canvas смотрится плохо
-                лучше его сделать "вспомогательным", расшириф на весь грид, для рисования "помех" и прочего
-                а в столбца грида буквы: 1 столбец = 1 буква
-        */
 
-        public Captcha(int length)
+        public Captcha(int length, double width, double height)
         {
             int abcLength = englishABCAndNumbersForCaptcha.Length;
             for (int i = 0; i < length; i++)
@@ -30,7 +23,7 @@ namespace DEMPS.Models
                 _text += englishABCAndNumbersForCaptcha[rnd.Next(0, abcLength)];
             }
             Image = CreateCaptcha(_text);
-            CreateInterference(3, 100,100);
+            CreateInterference(3, width, height);
         }
         private Grid CreateCaptcha(string text)//тут будет возврат Canvas
         {
@@ -44,8 +37,8 @@ namespace DEMPS.Models
                 letterTextBlock.Text = letter.ToString();
                 letterTextBlock.Margin = RandomTextMargin(0,8,0,10);//min ,max
                 letterTextBlock.FontSize = RandomFontSize(15,25);//min,max
-                //letterTextBlock.Foreground = ;
-                //letterTextBlock.FontSize = 
+
+                letterTextBlock.Foreground = RandomColor();
                 letterTextBlock.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
                 letterTextBlock.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
 
@@ -68,15 +61,15 @@ namespace DEMPS.Models
             return gridForCaptcha;
         }
 
-        private void CreateInterference(int interferencesMultiplier, int width, int height)
+        private void CreateInterference(int interferencesMultiplier, double width, double height)
         {
             Canvas canvas = new Canvas();
 
             canvas.Width = Image.Width;
             canvas.Height = Image.Height;
 
-            int imageWidth = width;
-            int imageHeight = height;
+            int imageWidth = Convert.ToInt32(Math.Round(width));
+            int imageHeight = Convert.ToInt32(Math.Round(height));
 
             int rand = rnd.Next(5 * interferencesMultiplier, 10 * interferencesMultiplier);
 
@@ -84,17 +77,11 @@ namespace DEMPS.Models
             {
                 Line line = new Line()
                 {
-                    StartPoint = new Point(
-                        rnd.Next(0, imageWidth),
-                        rnd.Next(0, imageHeight)
-                        ),
+                    StartPoint = RandomPoint(width, height),
+                    EndPoint = RandomPoint(width, height),
 
-                    EndPoint = new Point(
-                        rnd.Next(0, imageWidth),
-                        rnd.Next(0, imageHeight)
-                        ),
                     StrokeThickness = rnd.Next(2, 5),
-                    Stroke = new SolidColorBrush(Color.FromArgb(50, 50, 50, 50))
+                    Stroke = RandomColor(true)
                 };
                 canvas.Children.Add(line);
             }
@@ -119,7 +106,7 @@ namespace DEMPS.Models
         /// <summary>
         /// позже надо бы разделить на части: алфавит/числа
         /// </summary>
-        private const string englishABCAndNumbersForCaptcha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private const string englishABCAndNumbersForCaptcha = "abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789"; //I - тут не нужна, мешает
 
         #endregion
 
@@ -154,16 +141,38 @@ namespace DEMPS.Models
                 Convert.ToInt32(Math.Round(maxFontSize)));
         }
         /// <summary>
-        /// цвет текста/буквы
+        /// цвет помех/текста
         /// </summary>
+        /// <param name="isLine">Это линия? если == true, то цвет будет более прозрачным
+        /// это необходимо для того, чтобы текст можно было различить</param>
         /// <returns></returns>
-        private IBrush RandomTextColor()
+        private IBrush RandomColor(bool isLine = false)
         {
-            var colors = new List<IBrush>()
-            {
-                new SolidColorBrush(Color.FromRgb(102,100,50))
-            };
-            return colors[rnd.Next(0, colors.Count)];
+            byte a = (isLine) ? Convert.ToByte(rnd.Next(0, 50)) : 
+                                Convert.ToByte(rnd.Next(70, 255));
+
+            byte r = Convert.ToByte(rnd.Next(0, 255));
+            byte g = Convert.ToByte(rnd.Next(0, 255));
+            byte b = Convert.ToByte(rnd.Next(0, 255));
+
+            return new SolidColorBrush(Color.FromArgb(a,r,g,b));
         }
+        /// <summary>
+        /// рандомная точкка
+        /// </summary>
+        /// <param name="widthCaptcha">ширина капчи</param>
+        /// <param name="heightCaptcha">высота капчи</param>
+        /// <returns></returns>
+        private Point RandomPoint(double widthCaptcha, double heightCaptcha)
+        {
+            int width = Convert.ToInt32(Math.Round(widthCaptcha));
+            int height = Convert.ToInt32(Math.Round(heightCaptcha));
+
+            double x1 = rnd.Next(0, width);
+            double y1 = rnd.Next(0, height);
+
+            return new Point(x1,y1);
+        }
+        
     }
 }

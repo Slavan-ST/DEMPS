@@ -3,29 +3,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:atprperty="clr-namespace:DEMPS.Behavior;assembly=DEMPS"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 mc:Ignorable="d" 
              x:Class="AvaloniaApplicationTest.Views.CaptchaTest"
-				  
+			 
+			 
+			 Width="{Binding Width}" 
+			 Height="{Binding Height}"
 			 atprperty:BehaviorForCaptcha.IsVerified="{Binding IsVerified}">
 
-	<Grid Margin="20">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="8*"/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
+	<StackPanel Margin="20"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch">
+		<Border BorderBrush="AliceBlue" 
+				BorderThickness="5"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch">
+			<StackPanel>
 
-
-		<Border Grid.Row="0"
-				Width="200"
-				Height="200"
-				BorderBrush="AliceBlue" 
-				BorderThickness="5">
-			<UserControl Content="{Binding Image}"/>
+				<UserControl Content="{Binding Image}"
+							 HorizontalAlignment="Stretch"
+							 VerticalAlignment="Stretch"/>
+				<TextBox Text="{Binding InputUserText}"/>
+				<Button Content="Refresh"
+						Command="{Binding Refresh}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"/>
+			</StackPanel>
 		</Border>
-		
-		<TextBox Grid.Row="1" Text="{Binding InputUserText}"/>
-	</Grid>
+
+	</StackPanel>
 </UserControl>
