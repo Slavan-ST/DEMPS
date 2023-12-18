@@ -4,20 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="DEMPS.Controls.Captcha"
-			 >
-	<!--добавить IsVerified, Text-->
-	<Grid Margin="20">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="8*"/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
-		
-		
-		<StackPanel/>
-		<TextBox Grid.Row="1" Text="{Binding InputUserText}"/>
-		
-	</Grid>
+			 
+			 
+			 
+             xmlns:atprperty="clr-namespace:DEMPS.Behavior;assembly=DEMPS"
+			 Width="{Binding Width}" 
+			 Height="{Binding Height}"
+			 atprperty:BehaviorForCaptcha.IsVerified="{Binding IsVerified}">
+
+	<StackPanel Margin="20"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch">
+		<Border BorderBrush="AliceBlue" 
+				BorderThickness="5"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch">
+			<StackPanel>
+
+				<UserControl Content="{Binding Image}"
+							 HorizontalAlignment="Stretch"
+							 VerticalAlignment="Stretch"/>
+				<TextBox Text="{Binding InputUserText}"/>
+				<Button Content="Refresh"
+						Command="{Binding Refresh}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"/>
+			</StackPanel>
+		</Border>
+
+	</StackPanel>
 </UserControl>
