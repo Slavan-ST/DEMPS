@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:controls="clr-namespace:AvaloniaApplicationTest.TestControls">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<!-- Add Controls for Previewer Here -->
+		</Border>
+	</Design.PreviewWith>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--This is the ControlTheme for our RatingControl-->
+	<ControlTheme x:Key="{x:Type controls:Captcha}" TargetType="controls:Captcha">
+
+		<ControlTheme.Resources>
+
+		</ControlTheme.Resources>
+
+		<!--Every TemplatedControl needs to have a ControlTemplate applied. In this setter we define it.-->
+		<Setter Property="Template">
+			<ControlTemplate>
+
+				<!--Мы помещаем наш контент в систему контроля ошибок проверки данных, 
+					поэтому сообщения об ошибках отображаются должным образом-->
+				<DataValidationErrors>
+
+					<!--Тут начинается наш контрол с названием "PART_StarsPresenter", по которому его можно будет найти-->
+					<ItemsControl x:Name="CaptchaPresenter" >
+
+
+						<StackPanel Margin="20"
+							VerticalAlignment="Stretch"
+							HorizontalAlignment="Stretch">
+							<Border BorderBrush="AliceBlue"
+									BorderThickness="5"
+									VerticalAlignment="Stretch"
+									HorizontalAlignment="Stretch">
+								<StackPanel>
+
+									<UserControl Content="{Binding Image}"
+												 HorizontalAlignment="Stretch"
+												 VerticalAlignment="Stretch"/>
+									<TextBox Text="{Binding InputUserText}"/>
+									<Button Content="Refresh"
+											Command="{Binding Refresh}"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"/>
+								</StackPanel>
+							</Border>
+
+						</StackPanel>
+
+
+					</ItemsControl>
+				</DataValidationErrors>
+
+			</ControlTemplate>
+		</Setter>
+	</ControlTheme>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ResourceDictionary>

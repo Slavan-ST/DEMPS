@@ -9,4 +9,14 @@
         <FluentTheme />
     </Application.Styles>
 
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<!-- Don't miss this line -->
+				<ResourceInclude Source="/Themes/CaptchaStyles.axaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+	
 </Application>
