@@ -46,15 +46,16 @@
 									HorizontalAlignment="Stretch">
 								<StackPanel>
 
-									<UserControl Content="{Binding Image}"
+									<UserControl Content="{TemplateBinding Image}"
 												 HorizontalAlignment="Stretch"
 												 VerticalAlignment="Stretch"/>
-									<TextBox Text="{Binding InputUserText}"/>
+									<TextBox Text="{TemplateBinding InputUserText}"/>
 									<Button Content="Refresh"
-											Command="{Binding Refresh}"
 											HorizontalAlignment="Center"
 											VerticalAlignment="Center"/>
 								</StackPanel>
+
+								<!--</Button>Command="{TemplateBinding Refresh}"-->
 							</Border>
 
 						</StackPanel>

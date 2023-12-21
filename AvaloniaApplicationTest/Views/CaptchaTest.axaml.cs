@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
-using DEMPS.CustomControls;
 using DEMPS.ViewModels;
 
 namespace AvaloniaApplicationTest.Views
