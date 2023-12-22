@@ -10,6 +10,7 @@ using Avalonia;
 using Avalonia.Data;
 using ReactiveUI.Fody.Helpers;
 using System.Windows.Input;
+using ReactiveUI;
 
 namespace AvaloniaApplicationTest.TestControls
 {
@@ -18,7 +19,6 @@ namespace AvaloniaApplicationTest.TestControls
     {
 
 
-        public ICommand Refresh { get; set; }
 
         // public Bitmap? Image { get; set; } // изображение капчи
         public string Text { get; set; } = string.Empty; //Текст капчи
@@ -32,6 +32,20 @@ namespace AvaloniaApplicationTest.TestControls
         {
 
         }
+
+        public ICommand Refresh
+        {
+            get { return GetValue(RefreshProperty); }
+            set { SetValue(RefreshProperty, value); }
+        }
+        public static StyledProperty<ICommand> RefreshProperty =
+            AvaloniaProperty.Register<Captcha, ICommand>(
+                nameof(Refresh),
+                defaultValue: ReactiveCommand.Create(() => 
+                {
+                    StartCaptcha = new DEMPS.Models.Captcha(5,200,200);
+                })
+                );
 
         public string InputUserText
         {
