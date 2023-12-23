@@ -11,41 +11,40 @@ using Avalonia.Data;
 using ReactiveUI.Fody.Helpers;
 using System.Windows.Input;
 using ReactiveUI;
+using DEMPS.Models;
 
 namespace AvaloniaApplicationTest.TestControls
 {
     [TemplatePart("CaptchaPresenter", typeof(ItemsControl))] //так мы можем найти наш контрол по имени
     public class Captcha : TemplatedControl
     {
-
-
-
-        // public Bitmap? Image { get; set; } // изображение капчи
-        public string Text { get; set; } = string.Empty; //Текст капчи
-        public bool IsVerified { get; set; } = false; // совпадает-ли текст введенный пользователем с текстом капчи
-        //public double Width { get; set; } = 200;
+        //public double Width { get; set; } = 200; // тут для рисунка капчи надо размеры добавить
         //public double Height { get; set; } = 200;
-        private static DEMPS.Models.Captcha StartCaptcha = new DEMPS.Models.Captcha(5, 200, 200);
+       
+        CaptchaModel? captchaModel;
+        string text = string.Empty;
 
-
+        void InitializeCaptcha()
+        {
+            captchaModel = new DEMPS.Models.CaptchaModel(5, this.Width, this.Height);
+            text = captchaModel.Text;
+            Image = captchaModel.Image;
+        }
         public Captcha()
         {
-
-        }
-
-        public ICommand Refresh
-        {
-            get { return GetValue(RefreshProperty); }
-            set { SetValue(RefreshProperty, value); }
-        }
-        public static StyledProperty<ICommand> RefreshProperty =
-            AvaloniaProperty.Register<Captcha, ICommand>(
-                nameof(Refresh),
-                defaultValue: ReactiveCommand.Create(() => 
+            InitializeCaptcha();
+            Refresh = ReactiveCommand.Create(() =>
+            {
+                captchaModel = new DEMPS.Models.CaptchaModel(5, this.Width, this.Height);
+                text = captchaModel.Text;
+            });
+            this.WhenAnyValue(x => x.InputUserText)
+                .Subscribe(t =>
                 {
-                    StartCaptcha = new DEMPS.Models.Captcha(5,200,200);
-                })
-                );
+                    this.IsVerified = t == text;//t == InputUserText
+                });
+        }
+        public ICommand Refresh { get; set; }
 
         public string InputUserText
         {
@@ -57,6 +56,16 @@ namespace AvaloniaApplicationTest.TestControls
                 nameof(InputUserText),
                 defaultValue: string.Empty
                 );
+        public bool IsVerified
+        {
+            get { return GetValue(IsVerifiedProperty); }
+            set { SetValue(IsVerifiedProperty, value); }
+        }
+        public static StyledProperty<bool> IsVerifiedProperty =
+            AvaloniaProperty.Register<Captcha, bool>(
+                nameof(IsVerified),
+                defaultValue: false
+                );
 
         public Grid? Image
         {
@@ -65,24 +74,9 @@ namespace AvaloniaApplicationTest.TestControls
         }
         public static StyledProperty<Grid?> ImageProperty =
             AvaloniaProperty.Register<Captcha, Grid?>(
-                nameof(Image),                          //имя свойства
-                defaultValue: StartCaptcha.Image        //значение по умолчанию
+                nameof(Image)                          //имя свойства
                 );
 
-
-
-
-        //public static StyledProperty<int> NumberOfStarsProperty =
-        //    AvaloniaProperty.Register<Captcha, int>(
-        //        nameof(NumberOfStars),          // Sets the name of the property                                задаёт имя свойства
-        //        defaultValue: 5,
-        //        coerce: // The default value of this property                           значение по умолчанию
-        //        );   // Ensures that we always have a valid number of stars          гарантирует, что количество звёзд всегда будет правильным
-        //public int NumberOfStars
-        //{
-        //    get { return GetValue(NumberOfStarsProperty); }
-        //    set { SetValue(NumberOfStarsProperty, value); }
-        //}
 
 
 
@@ -93,6 +87,7 @@ namespace AvaloniaApplicationTest.TestControls
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
+            //if(change.Property == )
         }
 
         // Мы переопределяем то, что происходит при применении шаблона элемента управления.

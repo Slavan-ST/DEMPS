@@ -38,7 +38,7 @@ namespace DEMPS.ViewModels
         private void InitializeCaptcha()
         {
             int lengthCaptcha = 6;
-            Captcha captcha = new Captcha(lengthCaptcha, Width, Height);
+            CaptchaModel captcha = new CaptchaModel(lengthCaptcha, Width, Height);
 
             Image = captcha.Image;
             Text = captcha.Text;

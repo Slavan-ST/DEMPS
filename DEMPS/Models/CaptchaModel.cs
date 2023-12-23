@@ -5,6 +5,7 @@ using Avalonia.Media.Imaging;
 using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DEMPS.Models
 {
-    public class Captcha:ReactiveObject
+    public class CaptchaModel:ReactiveObject
     {
 
-        public Captcha(int length, double width, double height)
+        public CaptchaModel(int length, double width, double height)
         {
             int abcLength = englishABCAndNumbersForCaptcha.Length;
             for (int i = 0; i < length; i++)
@@ -25,6 +26,9 @@ namespace DEMPS.Models
             Image = CreateCaptcha(_text);
             CreateInterference(3, width, height);
         }
+
+
+
         private Grid CreateCaptcha(string text)//тут будет возврат Canvas
         {
             List<TextBlock> textForCaptcha = new List<TextBlock>();
@@ -68,6 +72,7 @@ namespace DEMPS.Models
             canvas.Width = Image.Width;
             canvas.Height = Image.Height;
 
+            Debug.WriteLine(width);
             int imageWidth = Convert.ToInt32(Math.Round(width));
             int imageHeight = Convert.ToInt32(Math.Round(height));
 
