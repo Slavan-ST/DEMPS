@@ -12,6 +12,7 @@ using ReactiveUI.Fody.Helpers;
 using System.Windows.Input;
 using ReactiveUI;
 using DEMPS.Models;
+using System.Diagnostics;
 
 namespace AvaloniaApplicationTest.TestControls
 {
@@ -26,7 +27,7 @@ namespace AvaloniaApplicationTest.TestControls
 
         void InitializeCaptcha()
         {
-            captchaModel = new DEMPS.Models.CaptchaModel(5, this.Width, this.Height);
+            captchaModel = new DEMPS.Models.CaptchaModel(5, WidthImage, HeightImage);
             text = captchaModel.Text;
             Image = captchaModel.Image;
         }
@@ -35,27 +36,59 @@ namespace AvaloniaApplicationTest.TestControls
             InitializeCaptcha();
             Refresh = ReactiveCommand.Create(() =>
             {
-                captchaModel = new DEMPS.Models.CaptchaModel(5, this.Width, this.Height);
-                text = captchaModel.Text;
+                InitializeCaptcha();
             });
-            this.WhenAnyValue(x => x.InputUserText)
-                .Subscribe(t =>
-                {
-                    this.IsVerified = t == text;//t == InputUserText
-                });
         }
-        public ICommand Refresh { get; set; }
 
+
+        public ICommand Refresh
+        {
+            get { return GetValue(RefreshProperty); }
+            set { SetValue(RefreshProperty, value); }
+        }
+        public static StyledProperty<ICommand> RefreshProperty =
+            AvaloniaProperty.Register<Captcha, ICommand>(
+                nameof(Refresh)
+                );
+
+        public double WidthImage
+        {
+            get { return GetValue(WidthImageProperty); }
+            set { SetValue(WidthImageProperty, value); }
+        }
+        public static StyledProperty<double> WidthImageProperty =
+            AvaloniaProperty.Register<Captcha, double>(
+                nameof(WidthImage),
+                defaultValue:200
+                );
+        public double HeightImage
+        {
+            get { return GetValue(HeightImageProperty); }
+            set { SetValue(HeightImageProperty, value); }
+        }
+        public static StyledProperty<double> HeightImageProperty =
+            AvaloniaProperty.Register<Captcha, double>(
+                nameof(HeightImage),
+                defaultValue: 200
+                );
+
+        string _inputUserText = "";
         public string InputUserText
         {
-            get { return GetValue(InputUserTextProperty); }
-            set { SetValue(InputUserTextProperty, value); }
+            get { return _inputUserText; }
+            set { SetAndRaise(InputUserTextProperty, ref _inputUserText, value); }
         }
-        public static StyledProperty<string> InputUserTextProperty =
-            AvaloniaProperty.Register<Captcha, string>(
+        public static DirectProperty<Captcha,string> InputUserTextProperty =
+            AvaloniaProperty.RegisterDirect<Captcha, string>(
                 nameof(InputUserText),
-                defaultValue: string.Empty
+                o => o.InputUserText,
+                (o, v) => o.InputUserText = v
+
                 );
+        void TestVoid()
+        {
+            Debug.WriteLine(InputUserText);
+        }
         public bool IsVerified
         {
             get { return GetValue(IsVerifiedProperty); }
@@ -87,7 +120,11 @@ namespace AvaloniaApplicationTest.TestControls
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
-            //if(change.Property == )
+            if (change.Property == InputUserTextProperty)
+            {
+                IsVerified = InputUserText == text;//t == InputUserText
+                Debug.WriteLine("it's work   " + IsVerified);
+            }
         }
 
         // Мы переопределяем то, что происходит при применении шаблона элемента управления.

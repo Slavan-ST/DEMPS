@@ -72,7 +72,6 @@ namespace DEMPS.Models
             canvas.Width = Image.Width;
             canvas.Height = Image.Height;
 
-            Debug.WriteLine(width);
             int imageWidth = Convert.ToInt32(Math.Round(width));
             int imageHeight = Convert.ToInt32(Math.Round(height));
 

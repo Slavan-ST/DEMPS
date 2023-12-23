@@ -34,7 +34,7 @@
 				<DataValidationErrors>
 
 					<!--Тут начинается наш контрол с названием "PART_StarsPresenter", по которому его можно будет найти-->
-					<ItemsControl x:Name="CaptchaPresenter" >
+					<ItemsControl x:Name="CaptchaPresenter">
 
 
 						<StackPanel Margin="20"
@@ -47,15 +47,18 @@
 								<StackPanel>
 
 									<UserControl Content="{TemplateBinding Image}"
+												 Height="{TemplateBinding HeightImage}"
+												 Width="{TemplateBinding WidthImage}"
 												 HorizontalAlignment="Stretch"
 												 VerticalAlignment="Stretch"/>
 									<TextBox Text="{TemplateBinding InputUserText}"/>
 									<Button Content="Refresh"
 											HorizontalAlignment="Center"
-											VerticalAlignment="Center"/>
+											VerticalAlignment="Center"
+											Command="{TemplateBinding Refresh}"/>
 								</StackPanel>
 
-								<!--</Button>Command="{TemplateBinding Refresh}"-->
+								<!--</Button>-->
 							</Border>
 
 						</StackPanel>
