@@ -9,7 +9,7 @@ namespace AvaloniaApplicationTest.Views
         public CaptchaTest()
         {
             InitializeComponent();
-            DataContext = new CaptchaViewModel();
+            //DataContext = new CaptchaViewModel();
         }
     }
 }

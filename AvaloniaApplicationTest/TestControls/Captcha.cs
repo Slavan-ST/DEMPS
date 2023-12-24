@@ -19,9 +19,6 @@ namespace AvaloniaApplicationTest.TestControls
     [TemplatePart("CaptchaPresenter", typeof(ItemsControl))] //так мы можем найти наш контрол по имени
     public class Captcha : TemplatedControl
     {
-        //public double Width { get; set; } = 200; // тут для рисунка капчи надо размеры добавить
-        //public double Height { get; set; } = 200;
-       
         CaptchaModel? captchaModel;
         string text = string.Empty;
 
@@ -30,12 +27,14 @@ namespace AvaloniaApplicationTest.TestControls
             captchaModel = new DEMPS.Models.CaptchaModel(5, WidthImage, HeightImage);
             text = captchaModel.Text;
             Image = captchaModel.Image;
+            InputUserText = "";
         }
         public Captcha()
         {
             InitializeCaptcha();
             Refresh = ReactiveCommand.Create(() =>
             {
+                Debug.WriteLine(InputUserText);
                 InitializeCaptcha();
             });
         }
@@ -71,24 +70,22 @@ namespace AvaloniaApplicationTest.TestControls
                 nameof(HeightImage),
                 defaultValue: 200
                 );
-
-        string _inputUserText = "";
         public string InputUserText
         {
-            get { return _inputUserText; }
-            set { SetAndRaise(InputUserTextProperty, ref _inputUserText, value); }
+            get { return GetValue(InputUserTextProperty); }
+            set { SetValue(InputUserTextProperty, value); }
         }
-        public static DirectProperty<Captcha,string> InputUserTextProperty =
-            AvaloniaProperty.RegisterDirect<Captcha, string>(
+        public static StyledProperty<string> InputUserTextProperty =
+            AvaloniaProperty.Register<Captcha, string>(
                 nameof(InputUserText),
-                o => o.InputUserText,
-                (o, v) => o.InputUserText = v
+                defaultBindingMode: BindingMode.TwoWay,
+                defaultValue:""
+
+
+
 
                 );
-        void TestVoid()
-        {
-            Debug.WriteLine(InputUserText);
-        }
+
         public bool IsVerified
         {
             get { return GetValue(IsVerifiedProperty); }
@@ -122,7 +119,7 @@ namespace AvaloniaApplicationTest.TestControls
             base.OnPropertyChanged(change);
             if (change.Property == InputUserTextProperty)
             {
-                IsVerified = InputUserText == text;//t == InputUserText
+                IsVerified = InputUserText.ToLower() == text.ToLower();//t == InputUserText
                 Debug.WriteLine("it's work   " + IsVerified);
             }
         }

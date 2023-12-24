@@ -34,7 +34,7 @@
 				<DataValidationErrors>
 
 					<!--Тут начинается наш контрол с названием "PART_StarsPresenter", по которому его можно будет найти-->
-					<ItemsControl x:Name="CaptchaPresenter">
+					<ItemsControl x:Name="CaptchaPresenter" >
 
 
 						<StackPanel Margin="20"
@@ -51,14 +51,13 @@
 												 Width="{TemplateBinding WidthImage}"
 												 HorizontalAlignment="Stretch"
 												 VerticalAlignment="Stretch"/>
-									<TextBox Text="{TemplateBinding InputUserText}"/>
+									<TextBox Text="{Binding $parent[controls:Captcha].InputUserText, Mode=TwoWay}"/>
 									<Button Content="Refresh"
 											HorizontalAlignment="Center"
 											VerticalAlignment="Center"
 											Command="{TemplateBinding Refresh}"/>
 								</StackPanel>
 
-								<!--</Button>-->
 							</Border>
 
 						</StackPanel>

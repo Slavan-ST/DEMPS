@@ -10,12 +10,12 @@
 			 xmlns:ControlsTest="clr-namespace:AvaloniaApplicationTest.TestControls"
 			 
 			 
-             x:Class="AvaloniaApplicationTest.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <vm:MainViewModel />
-  </Design.DataContext>
-	
-	<ControlsTest:Captcha/>
+             x:Class="AvaloniaApplicationTest.Views.MainView">
+
+	<StackPanel>
+
+
+		<ControlsTest:Captcha IsVerified="{Binding IsVerified, Mode=TwoWay}"/>
+	</StackPanel>
 	
 </UserControl>

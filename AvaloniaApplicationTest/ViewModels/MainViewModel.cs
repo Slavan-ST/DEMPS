@@ -1,22 +1,37 @@
 ﻿using DEMPS.Services;
+using MsBox.Avalonia;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System.Windows.Input;
+using System;
+using System.Diagnostics;
 
 namespace AvaloniaApplicationTest.ViewModels;
 
-public class MainViewModel : ViewModelBase
+public class MainViewModel : ReactiveObject
 {
-    public string Greeting => "Welcome to Avalonia!";
     public MainViewModel()
     {
-        Click = ReactiveCommand.Create(() =>
-        {/*
-            var box = MessageBoxManager
-                .GetMessageBoxStandard("Caption", "Are you sure you would like to delete appender_replace_page_1?",
-                    ButtonEnum.YesNo);
-
-            var result = await box.ShowAsPopupAsync(this);*/
+        this.WhenAnyValue(x => x.IsVerified).Subscribe(x =>
+        {
+            Debug.WriteLine("Message haven't now!!" + IsVerified);
         });
     }
-    public ICommand Click { get; set; }
+
+    string _text = "";
+    public string Text
+    {
+        get => _text;
+        set => this.RaiseAndSetIfChanged(ref _text, value);
+    }
+
+
+
+
+    bool _isVerified = false;
+    public bool IsVerified
+    {
+        get => _isVerified;
+        set=> this.RaiseAndSetIfChanged(ref _isVerified, value);
+    }
 }
