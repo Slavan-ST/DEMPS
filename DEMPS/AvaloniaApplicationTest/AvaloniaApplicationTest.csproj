@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Captcha\Captcha.csproj" />
     <ProjectReference Include="..\DEMPS\DEMPS.csproj" />
   </ItemGroup>
 </Project>
