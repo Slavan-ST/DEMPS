@@ -8,26 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Data;
-using ReactiveUI.Fody.Helpers;
 using System.Windows.Input;
 using ReactiveUI;
-using DEMPS.Models;
+using Captcha.Models;
 using System.Diagnostics;
+using Avalonia.Markup.Xaml.Styling;
 
-namespace AvaloniaApplicationTest.TestControls
+namespace Captcha.Controls
 {
-    [TemplatePart("CaptchaPresenter", typeof(ItemsControl))] //так мы можем найти наш контрол по имени
+    [TemplatePart("CaptchaPresenter", typeof(ItemsControl))] //так мы можем найти контрол по имени
     public class Captcha : TemplatedControl
     {
-        CaptchaModel? captchaModel;
-        string text = string.Empty;
+        #region Поля
+        CaptchaModel? _captchaModel;
+        string _text = string.Empty;
+        #endregion
 
-        void InitializeCaptcha()
+        #region Конструктор
+
+        static Captcha()
         {
-            captchaModel = new DEMPS.Models.CaptchaModel(5, WidthImage, HeightImage);
-            text = captchaModel.Text;
-            Image = captchaModel.Image;
-            InputUserText = "";
+            //добавляем стиль капчи в ресурсы приложения
+            Application.Current?.Resources.MergedDictionaries
+                .Add(new ResourceInclude(new Uri("avares://Captcha/Themes/CaptchaStyles.axaml"))
+                {
+                    Source = new Uri("avares://Captcha/Themes/CaptchaStyles.axaml")
+                });
+
         }
         public Captcha()
         {
@@ -39,7 +46,20 @@ namespace AvaloniaApplicationTest.TestControls
             });
         }
 
+        void InitializeCaptcha()
+        {
+            //устанавливаем стартовые значения свойств и полей
+            _captchaModel = new CaptchaModel(5, WidthImage, HeightImage);
+            _text = _captchaModel.Text;
+            Image = _captchaModel.Image;
+            InputUserText = "";
+        }
+        #endregion
 
+        #region Свойства
+        /// <summary>
+        /// команда обновления капчи
+        /// </summary>
         public ICommand Refresh
         {
             get { return GetValue(RefreshProperty); }
@@ -49,7 +69,9 @@ namespace AvaloniaApplicationTest.TestControls
             AvaloniaProperty.Register<Captcha, ICommand>(
                 nameof(Refresh)
                 );
-
+        /// <summary>
+        /// Ширина рисунка капчи
+        /// </summary>
         public double WidthImage
         {
             get { return GetValue(WidthImageProperty); }
@@ -58,8 +80,11 @@ namespace AvaloniaApplicationTest.TestControls
         public static StyledProperty<double> WidthImageProperty =
             AvaloniaProperty.Register<Captcha, double>(
                 nameof(WidthImage),
-                defaultValue:200
+                defaultValue: 200
                 );
+        /// <summary>
+        /// Высота рисунка капчи
+        /// </summary>
         public double HeightImage
         {
             get { return GetValue(HeightImageProperty); }
@@ -70,6 +95,9 @@ namespace AvaloniaApplicationTest.TestControls
                 nameof(HeightImage),
                 defaultValue: 200
                 );
+        /// <summary>
+        /// Текст введенный пользователем, необходим для проверки прохождения капчи
+        /// </summary>
         public string InputUserText
         {
             get { return GetValue(InputUserTextProperty); }
@@ -79,13 +107,10 @@ namespace AvaloniaApplicationTest.TestControls
             AvaloniaProperty.Register<Captcha, string>(
                 nameof(InputUserText),
                 defaultBindingMode: BindingMode.TwoWay,
-                defaultValue:""
-
-
-
-
-                );
-
+                defaultValue: "");
+        /// <summary>
+        /// Пройдена капча или нет, true - да, false - нет 
+        /// </summary>
         public bool IsVerified
         {
             get { return GetValue(IsVerifiedProperty); }
@@ -96,7 +121,9 @@ namespace AvaloniaApplicationTest.TestControls
                 nameof(IsVerified),
                 defaultValue: false
                 );
-
+        /// <summary>
+        /// Картинка капчи, представленна гридом для лучшей масштабируемости
+        /// </summary>
         public Grid? Image
         {
             get { return GetValue(ImageProperty); }
@@ -107,20 +134,17 @@ namespace AvaloniaApplicationTest.TestControls
                 nameof(Image)                          //имя свойства
                 );
 
-
-
-
-
+        #endregion
 
         #region переопределение некоторых базовых функций
         // Мы переопределяем OnPropertyChanged базового класса. Таким образом, мы можем реагировать на изменения свойств
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
+            //если измененное свойство - текст введенный пользователем, то проверяем прошёл ли пользователь капчи
             if (change.Property == InputUserTextProperty)
             {
-                IsVerified = InputUserText.ToLower() == text.ToLower();//t == InputUserText
-                Debug.WriteLine("it's work   " + IsVerified);
+                IsVerified = InputUserText.ToLower() == _text.ToLower();//t == InputUserText
             }
         }
 

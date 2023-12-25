@@ -6,16 +6,15 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 
 			 
-			 xmlns:Controls="clr-namespace:DEMPS.Controls;assembly=DEMPS"
-			 xmlns:ControlsTest="clr-namespace:AvaloniaApplicationTest.TestControls"
+			 xmlns:Controls="clr-namespace:Captcha.Controls;assembly=Captcha"
 			 
 			 
              x:Class="AvaloniaApplicationTest.Views.MainView">
 
 	<StackPanel>
+		
+		<Controls:Captcha/>
 
-
-		<ControlsTest:Captcha IsVerified="{Binding IsVerified, Mode=TwoWay}"/>
 	</StackPanel>
 	
 </UserControl>

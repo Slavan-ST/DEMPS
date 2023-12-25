@@ -2,6 +2,5 @@
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <AvaloniaVersion>11.0.2</AvaloniaVersion>
-	<AvaloniaPreviewerNetCoreToolPath>$(MSBuildThisFileDirectory)..\src\tools\Avalonia.Designer.HostApp\bin\Debug\netcoreapp2.0\Avalonia.Designer.HostApp.dll</AvaloniaPreviewerNetCoreToolPath>
   </PropertyGroup>
 </Project>
