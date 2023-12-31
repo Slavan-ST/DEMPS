@@ -28,6 +28,7 @@ namespace DEMPS.Services
             {
                 Pages["first"] = startPage;
             }
+            Temp.CurrentControl = startPage!;
         }
         /// <summary>
         /// получить стартовую страницу
@@ -71,6 +72,7 @@ namespace DEMPS.Services
             {
                 NavigationView!.Page = pageView;
             }
+            Temp.CurrentControl = pageView!;
         }
     }
 }

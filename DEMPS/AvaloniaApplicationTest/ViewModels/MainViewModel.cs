@@ -11,5 +11,11 @@ namespace AvaloniaApplicationTest.ViewModels;
 public class MainViewModel : ReactiveObject
 {
     public MainViewModel()
-    { }
+    {
+        CmdTest = ReactiveCommand.Create(() =>
+        {
+            MessageBox.Show("message","test!");
+        });
+    }
+    public ICommand CmdTest { get; set; }
 }
