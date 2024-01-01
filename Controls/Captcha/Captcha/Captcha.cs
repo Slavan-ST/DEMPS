@@ -57,12 +57,12 @@ namespace Captcha
         #endregion
 
         #region Свойства
-        public static StyledProperty<Grid?> ImageProperty = AvaloniaProperty.Register<Captcha, Grid?>(nameof(Image));
-        public static StyledProperty<ICommand> RefreshProperty = AvaloniaProperty.Register<Captcha, ICommand>(nameof(Refresh));
-        public static StyledProperty<double> WidthImageProperty = AvaloniaProperty.Register<Captcha, double>(nameof(WidthImage), defaultValue: 200);
-        public static StyledProperty<double> HeightImageProperty = AvaloniaProperty.Register<Captcha, double>(nameof(HeightImage), defaultValue: 200);
-        public static StyledProperty<bool> IsVerifiedProperty = AvaloniaProperty.Register<Captcha, bool>(nameof(IsVerified), defaultValue: false);
-        public static StyledProperty<string> InputUserTextProperty = AvaloniaProperty.Register<Captcha, string>(nameof(InputUserText), defaultBindingMode: BindingMode.TwoWay, defaultValue: "");
+        public static readonly StyledProperty<Grid?> ImageProperty = AvaloniaProperty.Register<Captcha, Grid?>(nameof(Image));
+        public static readonly StyledProperty<ICommand> RefreshProperty = AvaloniaProperty.Register<Captcha, ICommand>(nameof(Refresh));
+        public static readonly StyledProperty<double> WidthImageProperty = AvaloniaProperty.Register<Captcha, double>(nameof(WidthImage), defaultValue: 200);
+        public static readonly StyledProperty<double> HeightImageProperty = AvaloniaProperty.Register<Captcha, double>(nameof(HeightImage), defaultValue: 200);
+        public static readonly StyledProperty<bool> IsVerifiedProperty = AvaloniaProperty.Register<Captcha, bool>(nameof(IsVerified), defaultValue: false);
+        public static readonly StyledProperty<string> InputUserTextProperty = AvaloniaProperty.Register<Captcha, string>(nameof(InputUserText), defaultBindingMode: BindingMode.TwoWay, defaultValue: "");
         /// <summary>
         /// Ширина рисунка капчи
         /// </summary>

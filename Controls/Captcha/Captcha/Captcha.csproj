@@ -3,6 +3,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <Title>Captcha</Title>
+    <Authors>SlavanST</Authors>
+    <PackageId>CaptchaForAvalonia</PackageId>
+    <Description>Контрол для Avalonia, представляющий простую интуитивно понятную капчу</Description>
   </PropertyGroup>
 
   
