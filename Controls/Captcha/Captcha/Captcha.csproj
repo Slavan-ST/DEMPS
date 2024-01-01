@@ -9,6 +9,7 @@
     <Description>Контрол для Avalonia, представляющий простую интуитивно понятную капчу</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <Version>1.0.0.2</Version>
   </PropertyGroup>
 
   

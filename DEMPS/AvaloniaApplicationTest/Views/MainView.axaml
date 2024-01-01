@@ -7,12 +7,12 @@
 			 
 			 
 			 
+             x:Class="AvaloniaApplicationTest.Views.MainView"
 			 
-             x:Class="AvaloniaApplicationTest.Views.MainView">
+			 >
 
 	<StackPanel>
 		<Button Content="Click me!" Command="{Binding CmdTest}"/>
-
 	</StackPanel>
 	
 </UserControl>
