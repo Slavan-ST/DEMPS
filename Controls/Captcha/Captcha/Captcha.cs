@@ -13,6 +13,7 @@ using ReactiveUI;
 using Captcha.Models;
 using System.Diagnostics;
 using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Media;
 
 namespace Captcha
 {
@@ -38,7 +39,6 @@ namespace Captcha
         }
         public Captcha()
         {
-            InitializeCaptcha();
             Refresh = ReactiveCommand.Create(() =>
             {
                 Debug.WriteLine(InputUserText);
@@ -124,6 +124,15 @@ namespace Captcha
         protected override void UpdateDataValidation(AvaloniaProperty property, BindingValueType state, Exception? error)
         {
             base.UpdateDataValidation(property, state, error);
+        }
+        public override void Render(DrawingContext context)
+        {
+            base.Render(context);
+        }
+        public override void EndInit()
+        {
+            base.EndInit();
+            InitializeCaptcha();
         }
         #endregion
     }

@@ -47,13 +47,10 @@
 								<RowDefinition/>
 								<RowDefinition/>
 							</Grid.RowDefinitions>
-							
-							<StackPanel>
-
-								<UserControl Content="{TemplateBinding Image}"
-											 HorizontalAlignment="Stretch"
-											 VerticalAlignment="Stretch"
-											 Grid.Row="0"/>
+							<UserControl Content="{TemplateBinding Image}"
+										 HorizontalAlignment="Stretch"
+										 VerticalAlignment="Stretch"
+										 Grid.Row="0"/>
 								<TextBox Text="{Binding $parent[controls:Captcha].InputUserText, Mode=TwoWay}"
 											 Grid.Row="1"/>
 								<Button Content="Refresh"
@@ -61,8 +58,6 @@
 											 VerticalAlignment="Center"
 											 Command="{TemplateBinding Refresh}"
 											 Grid.Row="2"/>
-							</StackPanel>
-
 						</Grid>
 
 
