@@ -6,13 +6,13 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 
 			 
-			 
              x:Class="AvaloniaApplicationTest.Views.MainView"
 			 
 			 >
 
 	<StackPanel>
-		<Button Content="Click me!" Command="{Binding CmdTest}"/>
+		
+		
 	</StackPanel>
 	
 </UserControl>
