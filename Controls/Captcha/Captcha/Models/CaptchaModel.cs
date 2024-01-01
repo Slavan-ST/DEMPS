@@ -73,11 +73,6 @@ namespace Captcha.Models
             canvas.Width = Image.Width;
             canvas.Height = Image.Height;
 
-            int imageWidth = Convert.ToInt32(Math.Round(width));
-            int imageHeight = Convert.ToInt32(Math.Round(height));
-
-            int rand = rnd.Next(5 * interferencesMultiplier, 10 * interferencesMultiplier);
-
             for (int i = 0; i < 100; i++)
             {
                 Line line = new Line()

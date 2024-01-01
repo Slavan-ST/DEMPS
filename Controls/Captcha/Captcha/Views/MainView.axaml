@@ -14,7 +14,7 @@
 		<!--Пример использования капчи, 
 		для проверки прохождения капчи можно использовать IsVerified,
 		если вернёт true, значит капча пройдена-->
-		<controls:Captcha/>
+		<controls:Captcha Width="200" Height="200"/>
 	</Border>
 	
 </UserControl>
