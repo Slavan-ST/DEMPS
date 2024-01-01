@@ -7,7 +7,7 @@
              x:Class="Captcha.Views.MainView"
              x:DataType="vm:MainViewModel"
 			 
-			 xmlns:controls="clr-namespace:Captcha.Controls"
+			 xmlns:controls="clr-namespace:Captcha;assembly=Captcha"
 			 >
 	<Border BorderThickness="10" BorderBrush="Red">
 		

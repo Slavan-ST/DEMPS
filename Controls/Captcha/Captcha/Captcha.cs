@@ -14,7 +14,7 @@ using Captcha.Models;
 using System.Diagnostics;
 using Avalonia.Markup.Xaml.Styling;
 
-namespace Captcha.Controls
+namespace Captcha
 {
     [TemplatePart("CaptchaPresenter", typeof(ItemsControl))] //так мы можем найти контрол по имени
     public class Captcha : TemplatedControl
@@ -57,18 +57,12 @@ namespace Captcha.Controls
         #endregion
 
         #region Свойства
-        /// <summary>
-        /// команда обновления капчи
-        /// </summary>
-        public ICommand Refresh
-        {
-            get { return GetValue(RefreshProperty); }
-            set { SetValue(RefreshProperty, value); }
-        }
-        public static StyledProperty<ICommand> RefreshProperty =
-            AvaloniaProperty.Register<Captcha, ICommand>(
-                nameof(Refresh)
-                );
+        public static StyledProperty<Grid?> ImageProperty = AvaloniaProperty.Register<Captcha, Grid?>(nameof(Image));
+        public static StyledProperty<ICommand> RefreshProperty = AvaloniaProperty.Register<Captcha, ICommand>(nameof(Refresh));
+        public static StyledProperty<double> WidthImageProperty = AvaloniaProperty.Register<Captcha, double>(nameof(WidthImage), defaultValue: 200);
+        public static StyledProperty<double> HeightImageProperty = AvaloniaProperty.Register<Captcha, double>(nameof(HeightImage), defaultValue: 200);
+        public static StyledProperty<bool> IsVerifiedProperty = AvaloniaProperty.Register<Captcha, bool>(nameof(IsVerified), defaultValue: false);
+        public static StyledProperty<string> InputUserTextProperty = AvaloniaProperty.Register<Captcha, string>(nameof(InputUserText), defaultBindingMode: BindingMode.TwoWay, defaultValue: "");
         /// <summary>
         /// Ширина рисунка капчи
         /// </summary>
@@ -77,11 +71,6 @@ namespace Captcha.Controls
             get { return GetValue(WidthImageProperty); }
             set { SetValue(WidthImageProperty, value); }
         }
-        public static StyledProperty<double> WidthImageProperty =
-            AvaloniaProperty.Register<Captcha, double>(
-                nameof(WidthImage),
-                defaultValue: 200
-                );
         /// <summary>
         /// Высота рисунка капчи
         /// </summary>
@@ -90,11 +79,6 @@ namespace Captcha.Controls
             get { return GetValue(HeightImageProperty); }
             set { SetValue(HeightImageProperty, value); }
         }
-        public static StyledProperty<double> HeightImageProperty =
-            AvaloniaProperty.Register<Captcha, double>(
-                nameof(HeightImage),
-                defaultValue: 200
-                );
         /// <summary>
         /// Текст введенный пользователем, необходим для проверки прохождения капчи
         /// </summary>
@@ -103,11 +87,6 @@ namespace Captcha.Controls
             get { return GetValue(InputUserTextProperty); }
             set { SetValue(InputUserTextProperty, value); }
         }
-        public static StyledProperty<string> InputUserTextProperty =
-            AvaloniaProperty.Register<Captcha, string>(
-                nameof(InputUserText),
-                defaultBindingMode: BindingMode.TwoWay,
-                defaultValue: "");
         /// <summary>
         /// Пройдена капча или нет, true - да, false - нет 
         /// </summary>
@@ -116,11 +95,6 @@ namespace Captcha.Controls
             get { return GetValue(IsVerifiedProperty); }
             set { SetValue(IsVerifiedProperty, value); }
         }
-        public static StyledProperty<bool> IsVerifiedProperty =
-            AvaloniaProperty.Register<Captcha, bool>(
-                nameof(IsVerified),
-                defaultValue: false
-                );
         /// <summary>
         /// Картинка капчи, представленна гридом для лучшей масштабируемости
         /// </summary>
@@ -129,10 +103,15 @@ namespace Captcha.Controls
             get { return GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
-        public static StyledProperty<Grid?> ImageProperty =
-            AvaloniaProperty.Register<Captcha, Grid?>(
-                nameof(Image)                          //имя свойства
-                );
+        /// <summary>
+        /// команда обновления капчи
+        /// </summary>
+        public ICommand Refresh
+        {
+            get { return GetValue(RefreshProperty); }
+            set { SetValue(RefreshProperty, value); }
+        }
+
 
         #endregion
 

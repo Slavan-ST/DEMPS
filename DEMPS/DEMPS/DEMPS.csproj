@@ -35,8 +35,4 @@
     <Using Include="ReactiveUI.Fody" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
-
 </Project>
