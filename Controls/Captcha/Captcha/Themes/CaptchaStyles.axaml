@@ -35,12 +35,16 @@
 				<DataValidationErrors>
 
 					<!--Тут начинается наш контрол с названием "PART_StarsPresenter", по которому его можно будет найти-->
-					<ItemsControl x:Name="CaptchaPresenter" >
+					<ItemsControl x:Name="CaptchaPresenter" 
+								  MinWidth="1"
+								  MinHeight="1">
 
 
 						<Grid Margin="20"
 							VerticalAlignment="Stretch"
-							HorizontalAlignment="Stretch">
+							HorizontalAlignment="Stretch"
+							  MinHeight="1"
+							  MinWidth="1">
 
 							<Grid.RowDefinitions>
 								<RowDefinition Height="6*"/>

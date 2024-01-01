@@ -39,18 +39,20 @@ namespace Captcha
         }
         public Captcha()
         {
+            AffectsRender<Captcha>(WidthProperty, HeightProperty);
             Refresh = ReactiveCommand.Create(() =>
             {
                 Debug.WriteLine(InputUserText);
                 InitializeCaptcha();
             });
+            InitializeCaptcha();
         }
 
         void InitializeCaptcha()
         {
-            var widthImage = Width / 6 * 4;
+            var heightImage = Bounds.Height / 6 * 4;
             //устанавливаем стартовые значения свойств и полей
-            _captchaModel = new CaptchaModel(5, widthImage, Height);
+            _captchaModel = new CaptchaModel(5, Bounds.Width, heightImage);
             _text = _captchaModel.Text;
             Image = _captchaModel.Image;
             InputUserText = "";
@@ -58,7 +60,6 @@ namespace Captcha
         #endregion
 
         #region Свойства
-
         public static readonly StyledProperty<Grid?> ImageProperty = AvaloniaProperty.Register<Captcha, Grid?>(nameof(Image));
         public static readonly StyledProperty<ICommand> RefreshProperty = AvaloniaProperty.Register<Captcha, ICommand>(nameof(Refresh));
         public static readonly StyledProperty<bool> IsVerifiedProperty = AvaloniaProperty.Register<Captcha, bool>(nameof(IsVerified), defaultValue: false);
@@ -128,11 +129,11 @@ namespace Captcha
         public override void Render(DrawingContext context)
         {
             base.Render(context);
+
         }
         public override void EndInit()
         {
             base.EndInit();
-            InitializeCaptcha();
         }
         #endregion
     }
