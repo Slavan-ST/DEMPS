@@ -11,7 +11,7 @@
 			 >
 
 	<StackPanel>
-		<control:Captcha Width="200" Height="200"/>
+		<control:Captcha Width="500" Height="500"/>
 	</StackPanel>
 	
 </UserControl>
