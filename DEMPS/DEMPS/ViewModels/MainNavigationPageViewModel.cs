@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DEMPS.Services;
 using Avalonia.Controls;
+using System.Diagnostics;
 
 namespace DEMPS.ViewModels
 {
@@ -14,10 +15,10 @@ namespace DEMPS.ViewModels
     {
         public MainNavigationPageViewModel()
         {
-            Page = Navigation.GetStartPage()!;
+
         }
         [Reactive]
-        public ContentControl Page { get; set; }
+        public ContentControl? Page{ get; set; }
         [Reactive]
         public ContentControl? Message { get; set; }
     }

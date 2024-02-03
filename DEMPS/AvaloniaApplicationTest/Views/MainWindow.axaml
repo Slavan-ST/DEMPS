@@ -6,7 +6,8 @@
         xmlns:views="clr-namespace:AvaloniaApplicationTest.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplicationTest.Views.MainWindow"
+		xmlns:demps="using:DEMPS.Views"
         Icon="/Assets/avalonia-logo.ico"
         Title="AvaloniaApplicationTest">
-        <views:MainView />
+        <demps:MainNavigationPageView />
 </Window>
