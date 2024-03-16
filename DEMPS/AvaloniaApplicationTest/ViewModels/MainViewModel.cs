@@ -8,14 +8,15 @@ using System.Diagnostics;
 
 namespace AvaloniaApplicationTest.ViewModels;
 
-public class MainViewModel : ReactiveObject
+public class MainViewModel : ReactiveObject, IScreen
 {
     public MainViewModel()
     {
-        CmdTest = ReactiveCommand.Create(() =>
-        {
-            MessageBox.Show("message","test!");
-        });
+        Next = ReactiveCommand.CreateFromObservable(
+                () => Router.Navigate.Execute(new FirstViewModel(this))
+            );
     }
-    public ICommand CmdTest { get; set; }
+    public ICommand Next { get; set; }
+
+    public RoutingState Router { get; } = new RoutingState();
 }

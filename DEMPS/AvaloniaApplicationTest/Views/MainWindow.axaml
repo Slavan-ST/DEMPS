@@ -9,5 +9,5 @@
 		xmlns:demps="using:DEMPS.Views"
         Icon="/Assets/avalonia-logo.ico"
         Title="AvaloniaApplicationTest">
-        <demps:MainNavigationPageView />
+        <views:MainView/>
 </Window>

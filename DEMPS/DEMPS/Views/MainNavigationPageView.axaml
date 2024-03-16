@@ -6,6 +6,5 @@
              x:Class="DEMPS.Views.MainNavigationPageView">	
 	<Grid>
 		<UserControl Content="{Binding Page}"/>
-		<UserControl Content="{Binding Message}"/>
 	</Grid>
 </UserControl>

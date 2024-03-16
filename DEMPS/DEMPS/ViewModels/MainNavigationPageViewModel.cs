@@ -19,7 +19,5 @@ namespace DEMPS.ViewModels
         }
         [Reactive]
         public ContentControl? Page{ get; set; }
-        [Reactive]
-        public ContentControl? Message { get; set; }
     }
 }
