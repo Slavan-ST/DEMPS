@@ -1,6 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:rxui="http://reactiveui.net"
+			 xmlns:app="clr-namespace:AvaloniaApplicationTest"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:AvaloniaApplicationTest.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -12,6 +14,15 @@
 
 	<StackPanel>
 		<control:Captcha Width="500" Height="500"/>
+		<Button Content="Next" Command="{Binding Next}"/>
+		<rxui:RoutedViewHost Grid.Row="0" Router="{Binding Router}">
+			<rxui:RoutedViewHost.DefaultContent>
+				<TextBlock Text="Default content"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+			</rxui:RoutedViewHost.DefaultContent>
+		</rxui:RoutedViewHost>
+		
 	</StackPanel>
 	
 </UserControl>

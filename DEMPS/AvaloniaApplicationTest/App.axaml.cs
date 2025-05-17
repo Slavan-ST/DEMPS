@@ -1,10 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-
-using AvaloniaApplicationTest.ViewModels;
 using AvaloniaApplicationTest.Views;
-
+using ReactiveUI;
+using Splat;
 namespace AvaloniaApplicationTest;
 
 public partial class App : Application
@@ -16,7 +15,14 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        DEMPS.AppConfig.StartApp(ApplicationLifetime, new MainView());
+        //регистрация локатора
+        Locator.CurrentMutable.RegisterLazySingleton(() => new AppViewLocator(), typeof(IViewLocator));
+
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.MainWindow = new MainWindow();
+        }
+
         base.OnFrameworkInitializationCompleted();
     }
 }

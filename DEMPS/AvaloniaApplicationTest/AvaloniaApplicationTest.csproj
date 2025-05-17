@@ -26,4 +26,10 @@
   <ItemGroup>
     <ProjectReference Include="..\DEMPS\DEMPS.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\FirstView.axaml.cs">
+      <DependentUpon>FirstView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

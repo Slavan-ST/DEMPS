@@ -14,9 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AvaloniaXaml Remove="Controls\Themes\**" />
+    <Compile Remove="Controls\Themes\**" />
+    <EmbeddedResource Remove="Controls\Themes\**" />
+    <None Remove="Controls\Themes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.5" />
     <PackageReference Include="Avalonia.Diagnostics" Version="11.0.5" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="ReactiveUI" Version="19.5.1" />
     <PackageReference Include="ReactiveUI.Fody" Version="19.5.1" />
@@ -39,10 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\..\Desktop\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -50,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controls\Themes\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

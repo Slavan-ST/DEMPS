@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using DEMPS.Services;
+using DEMPS.ViewModels;
 
 namespace DEMPS.Views
 {
@@ -9,7 +10,11 @@ namespace DEMPS.Views
         public MainNavigationPageView()
         {
             InitializeComponent();
-            DataContext  = Navigation.NavigationView =  new ViewModels.MainNavigationPageViewModel();
+
+
+            var vm = new MainNavigationPageViewModel();
+            DataContext = vm;
+            Navigation.ConfigNavigation(vm);
         }
     }
 }
